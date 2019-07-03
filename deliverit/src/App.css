@@ -1,0 +1,92 @@
+
+body {
+  background: url('./images/deliveryman.png') no-repeat 0% 20%;
+}
+
+/* Nav styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(89, 88, 160);
+  position: relative;
+  z-index: 5;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.navbar .logo img {
+  width: 60px;
+  padding: .1rem;
+}
+
+.navbar-content {
+  display: flex;
+
+}
+
+.navbar-content ul {
+  display: flex;
+  padding-left: 0;
+  align-items: center;
+}
+
+.navbar ul li{
+  list-style: none;
+  padding: 0 1.2rem;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/* Backgroung image */
+/* .homepage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  background: rgba(0,0,0,.4);
+  width: 100%;
+  height: 100%;
+} */
+
+/* Homepage Styles */
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0,0,0,.4);
+    top: 0;
+}
+
+.homepage .content {
+  position: relative;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+}
+
+/* Footer styles */
+
+.footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  height: 60px;
+  background-color: rgb(89, 88, 160);
+  align-items: center;
+  z-index: 10;
+  color: #fff
+
+}
