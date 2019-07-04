@@ -9,11 +9,11 @@ export default function Login () {
         <h4 style={{ textAlign: "center", color: "black" }}>User signup</h4>
         <form className="form">
           <div>
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" placeholder="johndoe@example.com"  required/>
+            <label htmlFor="email">Email Address:</label>
+            <input type="email" id="email" placeholder="johndoe@example.com"  required={true} />
           </div>
           <div>
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <input type="password" id="password" />
           </div>
           <br />

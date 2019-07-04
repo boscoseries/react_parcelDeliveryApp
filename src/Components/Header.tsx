@@ -15,7 +15,7 @@ export default function Header() {
             <NavLink to="/create">Send a Parcel</NavLink>
           </li>
           <li>
-            <NavLink>Track my Parcel</NavLink>
+            <NavLink to="">Track my Parcel</NavLink>
           </li>
           <li>
             <NavLink to="/">Home</NavLink>

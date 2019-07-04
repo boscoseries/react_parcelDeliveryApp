@@ -9,23 +9,23 @@ export default function Signup() {
         <h4 style={{ textAlign: "center", color: "black", padding: 0, margin: 0 }}>User signup</h4>
         <form className="form">
           <div>
-            <label for="firstname"> Fullname:</label>
+            <label htmlFor="firstname"> Fullname:</label>
             <input type="text" id="firstname" placeholder="Lastname Firstname Othernames" required />
           </div>
           <div>
-            <label for="email">Emiail Adress:</label>
+            <label htmlFor="email">Emiail Adress:</label>
             <input type="email" id="email" placeholder="johndoe@example.com" required />
           </div>
           <div>
-            <label for="phone">Phone:</label>
+            <label htmlFor="phone">Phone:</label>
             <input type="number" id="phone" placeholder="11 digits number" required />
           </div>
           <div>
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <input type="password" id="password" required />
           </div>
           <div>
-            <label for="password2">Confirm Password:</label>
+            <label htmlFor="password2">Confirm Password:</label>
             <input type="password" id="password2" required />
           </div>
           <br />
