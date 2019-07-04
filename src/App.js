@@ -7,6 +7,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Homepage from "./pages/Homepage";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Header />
         <Route path="/" exact component={Homepage} />
         <Route path="/signup" exact component={Signup} />
+        <Route path="/login" exact component={Login} />
         <Footer />
         </div>
     </Router>

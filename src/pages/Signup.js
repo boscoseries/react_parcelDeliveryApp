@@ -10,19 +10,19 @@ export default function Signup() {
         <form className="form">
           <div>
             <label for="firstname"> Fullname:</label>
-            <input type="text" name="firstname" />
+            <input type="text" id="firstname" />
           </div>
           <div>
             <label for="email">Emiail Adress:</label>
-            <input type="email" name="email" />
+            <input type="email" id="email" />
           </div>
           <div>
             <label for="phone2">Phone:</label>
-            <input type="number" name="phone2" />
+            <input type="number" id="phone2" />
           </div>
           <div>
             <label for="address">Address:</label>
-            <input type="text" name="address" />
+            <input type="text" id="address" />
           </div>
           <div>
             <label for="state">State:</label>
