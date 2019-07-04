@@ -1,46 +1,53 @@
-body {
-  background: url("./images/deliveryman.png") no-repeat 0% 20%;
-}
 
-/* Nav styles */
-.navbar {
+/* Header styles */
+.header {
   display: flex;
   justify-content: space-between;
   background-color: rgb(89, 88, 160);
-  position: relative;
-  z-index: 5;
+  height: 60px;
+  z-index: 1030;
 }
 
-.navbar .logo {
-  display: flex;
-  align-items: center;
-  color: #fff;
-}
-
-.navbar .logo img {
-  width: 60px;
-  padding: 0.1rem;
-}
-
-.navbar-content {
+.header-content {
   display: flex;
 }
 
-.navbar-content ul {
+.header-content ul {
   display: flex;
   padding-left: 0;
   align-items: center;
 }
 
-.navbar ul li {
+.header ul li {
   list-style: none;
   padding: 0 1.2rem;
 }
 
-.navbar ul li a {
+.header ul li a {
   color: #fff;
   text-decoration: none;
 }
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.header .logo img {
+  width: 60px;
+  padding: 0.1rem;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+
+
 
 /* Backgroung image */
 /* .homepage::before {
@@ -62,27 +69,35 @@ body {
   top: 0;
 }
 
+.overlay-dashboard {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+}
+
 .content {
   min-height: 100vh;
 }
 
 .homepage .content {
+  background: url("../images/deliveryman.png") no-repeat 0% 20%;
+  background-attachment: scroll;
   position: relative;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* min-height: 450px; */
 }
+
 
 /* Footer styles */
 
 .footer {
   display: flex;
   width: 100%;
-  position: fixed;
-  bottom: 0;
   justify-content: center;
   height: 60px;
   background-color: rgb(89, 88, 160);
@@ -102,21 +117,25 @@ body {
 
 .form label {
   display: block;
-  padding: 2px;
+  color: black;
+}
+
+.top-margin {
+  position: relative;
+  min-height: 710px;
+  display: flex;
+  align-items: center;
 }
 
 .form-wrapper {
-  margin: 30px auto;
-  /* height: 510px; */
+  margin: 100px auto;
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 50px;
-  width: 30%;
 }
 
 .form div {
   width: 100%;
-  padding: 5px 0px;
+  padding: 3px 0px;
 }
 
 input,

@@ -4,15 +4,15 @@ import logo from "../images/logo.svg";
 
 export default function Header() {
   return (
-    <div className="navbar">
+    <header className="header fixed-top">
       <div className="logo">
         <img src={logo} alt="jb" />
         <h2>DeliverIT</h2>
       </div>
-      <nav className="navbar-content">
+      <nav className="header-content">
         <ul>
           <li>
-            <NavLink>Send a Parcel</NavLink>
+            <NavLink to="/create">Send a Parcel</NavLink>
           </li>
           <li>
             <NavLink>Track my Parcel</NavLink>
@@ -25,6 +25,6 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-    </div>
+    </header>
   );
 }

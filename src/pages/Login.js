@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom'
 
 export default function Login () {
   return (
-    <React.Fragment>
-      <div className="form-wrapper">
-        <h4 style={{ textAlign: "center", color: "black", padding: 0, margin: 0 }}>User signup</h4>
+    <div className="top-margin">
+      <div className="form-wrapper" style={{ padding: '3rem' }}>
+        <h4 style={{ textAlign: "center", color: "black" }}>User signup</h4>
         <form className="form">
           <div>
             <label for="email">Email Address:</label>
-            <input type="email" id="email" />
+            <input type="email" id="email" placeholder="johndoe@example.com"  required/>
           </div>
           <div>
             <label for="password">Password:</label>
@@ -25,6 +25,6 @@ export default function Login () {
           </div>
         </form>
       </div>
-    </React.Fragment>
+    </div>
   );
 }
