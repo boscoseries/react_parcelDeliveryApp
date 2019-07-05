@@ -1,19 +1,107 @@
 {
-  "posts": [
+  "users": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "fullname": "rrrrrr",
+      "email": "bblizy43@gmail.com",
+      "phone": "3333",
+      "password": "dcef",
+      "passwordRepeat": "eefef",
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "fullname": "ddddddd",
+      "email": "boscoseries@gmail.com",
+      "phone": "4444",
+      "password": "admin",
+      "passwordRepeat": "rrrrrrrr",
+      "id": 2
+    },
+    {
+      "fullname": "ddd",
+      "email": "eeej@sgdgd.com",
+      "phone": "222",
+      "password": "ccdc",
+      "passwordRepeat": "cdcc",
+      "id": 3
+    },
+    {
+      "fullname": "dddd",
+      "email": "johnbosco.okoror@lixy.tech",
+      "phone": "11111",
+      "password": "fffff",
+      "passwordRepeat": "ffff",
+      "id": 4
+    },
+    {
+      "fullname": "dddd",
+      "email": "dddd",
+      "phone": "33333",
+      "password": "dddd",
+      "passwordRepeat": "ddddd",
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "id": 17
+    },
+    {
+      "id": 18
+    },
+    {
+      "fullname": "ddddd",
+      "email": "ddddd",
+      "phone": "33333",
+      "password": "cccccc",
+      "passwordRepeat": "ccccc",
+      "id": 19
+    },
+    {
+      "fullname": "sssss",
+      "email": "ssssss",
+      "phone": "3333",
+      "password": "ddddd",
+      "passwordRepeat": "ddddd",
+      "id": 20
+    },
+    {
+      "fullname": "eeee",
+      "email": "eeeeee",
+      "phone": "22222",
+      "password": "ssss",
+      "passwordRepeat": "ddddd",
+      "id": 21
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
