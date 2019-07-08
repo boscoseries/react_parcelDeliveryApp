@@ -7,12 +7,19 @@ import validate from "../hooks/validate";
 const Signup = () => {
   const { handleChange, handleSubmit, errors } = useForm(submit, validate);
 
-  function submit(data: object) {
+  function submit(data: any) {
     console.log("signup form submitted");
     axios
-    .post("http://localhost:3000/users", data)
-    .then((response: any) => {
-      console.log(response.data);
+      .get(`http://localhost:3000/users/?email=${data.email}`)
+        .then((response: any) => {
+        if (response.data.length) {
+          console.log('user already exists')
+        } else {
+          axios.post("http://localhost:3000/users", data)
+            .then((res: any) => {
+            console.log(res.data);
+          });
+        }
       })
       .catch(err => {
         console.log("error message", err);
