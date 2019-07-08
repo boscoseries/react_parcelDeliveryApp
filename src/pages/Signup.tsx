@@ -1,23 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import  useForm from '../hooks/useForm'
+import useForm from "../hooks/useForm";
+import validate from "../hooks/validate";
 
 import axios from "axios";
 
 const Signup = () => {
-  const { handleChange, handleSubmit } = useForm(submit);
+  const { handleChange, handleSubmit, errors } = useForm(submit, validate);
 
-  function submit(e: any) {
-    console.log("submitted");
-      const user = [...e.target].map((input: any) => input.name);
-    const data = [...e.target]
-      .filter((input: any): any => input.type !== "submit")
-      .map((input: any) => input.value)
-      .reduce((initial: any, next: any, index: number) => {
-        const key = user[index];
-        initial[key] = next;
-        return initial;
-      }, {});
+  function submit(data: object) {
+    console.log("signup form submitted");
     axios
       .post("http://localhost:3000/users", data)
       .then((res: any) => {
@@ -27,9 +19,6 @@ const Signup = () => {
         console.log("error message", err);
       });
   }
-
-
-
 
   return (
     <div className="top-margin">
@@ -44,7 +33,9 @@ const Signup = () => {
               id="fullname"
               placeholder="Lastname Firstname Othernames"
               onChange={handleChange}
+              className={`${errors.fullname ? "inputError" : "inputValid"}`}
             />
+            {errors.fullname && <p className="error">{errors.fullname}</p>}
           </div>
           <div>
             <label htmlFor="email">Email Adress:</label>
@@ -54,7 +45,9 @@ const Signup = () => {
               id="email"
               placeholder="johndoe@example.com"
               onChange={handleChange}
+              className={`${errors.email ? "inputError" : "inputValid"}`}
             />
+            {errors.email && <p className="error">{errors.email}</p>}
           </div>
           <div>
             <label htmlFor="phone">Phone:</label>
@@ -64,7 +57,9 @@ const Signup = () => {
               id="phone"
               placeholder="11 digits number"
               onChange={handleChange}
+              className={`${errors.phone ? "inputError" : "inputValid"}`}
             />
+            {errors.phone && <p className="error">{errors.phone}</p>}
           </div>
           <div>
             <label htmlFor="password">Password:</label>
@@ -73,7 +68,9 @@ const Signup = () => {
               name="password"
               id="password"
               onChange={handleChange}
+              className={`${errors.password ? "inputError" : "inputValid"}`}
             />
+            {errors.password && <p className="error">{errors.password}</p>}
           </div>
           <div>
             <label htmlFor="password2">Confirm Password:</label>
@@ -82,7 +79,9 @@ const Signup = () => {
               name="passwordRepeat"
               id="passwordRepeat"
               onChange={handleChange}
+              className={`${errors.passwordRepeat ? "inputError" : "inputValid"}`}
             />
+            {errors.passwordRepeat && <p className="error">{errors.passwordRepeat}</p>}
           </div>
           <br />
           <div>
@@ -95,7 +94,6 @@ const Signup = () => {
       </div>
     </div>
   );
-}
-
+};
 
 export default Signup;

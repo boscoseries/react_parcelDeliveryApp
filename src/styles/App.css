@@ -172,3 +172,16 @@ input[type="submit"]:hover {
   text-decoration: none;
   color: #4caf50;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.inputError {
+  border-color: red;
+}
+
+.inputValid {
+  border: 1px solid green;
+}
