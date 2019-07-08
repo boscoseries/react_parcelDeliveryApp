@@ -27,7 +27,7 @@ export default function useForm(submitCallback: any, validateCallback: any) {
     e.preventDefault();
     // create errors object at this point and export to form
     setErrors(validateCallback(inputValues));
-    // set submitted to true
+    // re-set submitted to true
     setSubmitted(true);
   };
 
@@ -36,7 +36,7 @@ export default function useForm(submitCallback: any, validateCallback: any) {
       // call submit function if above conditions are met
       submitCallback(inputValues);
     }
-  }, [errors]);
+  }, [errors, submitted, inputValues]);
 
   return {
     handleChange,

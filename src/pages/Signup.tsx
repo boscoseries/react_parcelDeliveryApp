@@ -1,9 +1,8 @@
+import axios from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import validate from "../hooks/validate";
-
-import axios from "axios";
 
 const Signup = () => {
   const { handleChange, handleSubmit, errors } = useForm(submit, validate);
@@ -11,9 +10,9 @@ const Signup = () => {
   function submit(data: object) {
     console.log("signup form submitted");
     axios
-      .post("http://localhost:3000/users", data)
-      .then((res: any) => {
-        console.log(res);
+    .post("http://localhost:3000/users", data)
+    .then((response: any) => {
+      console.log(response.data);
       })
       .catch(err => {
         console.log("error message", err);
@@ -84,6 +83,7 @@ const Signup = () => {
             {errors.passwordRepeat && <p className="error">{errors.passwordRepeat}</p>}
           </div>
           <br />
+          {errors.inputRequired && <p className="error">{errors.inputRequired}</p>}
           <div>
             <input type="submit" id="submit" value="Submit" />
           </div>

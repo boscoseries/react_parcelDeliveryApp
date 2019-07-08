@@ -1,45 +1,70 @@
-import React from "react";
-import { NavLink } from 'react-router-dom';
-import useForm from '../hooks/useForm';
-import validate from '../hooks/validate';
+import React, { useState } from "react";
+import { NavLink,Redirect } from "react-router-dom";
+import useForm from "../hooks/useForm";
+import validate from "../hooks/validate";
+import jwt from "jsonwebtoken";
 
 import axios from "axios";
 
-
-
 export default function Login() {
+  const { handleChange, handleSubmit, errors } = useForm(submit, validate);
+  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false)
 
-  const { handleChange, handleSubmit, errors } = useForm(submit, validate)
-
-  function submit(data: object) {
+  function submit(data: any) {
     console.log("login form submitted");
     axios
-      .post("http://localhost:3000/users", data)
-      .then((res: any) => {
-        console.log(res);
+      .get(`http://localhost:3000/users/?email=${data.email}`)
+      .then((response: any) => {
+        if (response.data.length) {
+          jwt.sign({ data: response.data }, "mysecret", { expiresIn: "1h" }, (error, token) => {
+            if (token) {
+              localStorage.setItem("token", token);
+              setIsLoggedIn(true)
+              console.log(token);
+            }
+            return;
+          })
+        } else {
+          console.log('not found')
+        }
       })
       .catch(err => {
         console.log("error message", err);
       });
   }
 
-
-  return (
+  return isLoggedIn ? (
+    <Redirect to="/create" />
+  ) : (
     <div className="top-margin">
-      <div className="form-wrapper" style={{ padding: '3rem' }}>
+      <div className="form-wrapper" style={{ padding: "3rem" }}>
         <h4 style={{ textAlign: "center", color: "black" }}>User Login</h4>
         <form className="form" onSubmit={handleSubmit} noValidate>
           <div>
             <label htmlFor="email">Email Address:</label>
-            <input type="email" name="email" id="email" placeholder="johndoe@example.com" onChange={handleChange} className={`${errors.email ? "inputError" : "inputValid"}`}/>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="johndoe@example.com"
+              onChange={handleChange}
+              className={`${errors.email ? "inputError" : "inputValid"}`}
+            />
             {errors.email && <p className="error">{errors.email}</p>}
-            </div>
-            <div>
+          </div>
+          <div>
             <label htmlFor="password">Password:</label>
-            <input type="password" name="password" id="password" onChange={handleChange} className={`${errors.password ? "inputError" : "inputValid"}`}/>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              className={`${errors.password ? "inputError" : "inputValid"}`}
+            />
             {errors.password && <p className="error">{errors.password}</p>}
           </div>
           <br />
+          {errors.inputRequired && <p className="error">{errors.inputRequired}</p>}
           <div>
             <input type="submit" value="Submit" />
           </div>
