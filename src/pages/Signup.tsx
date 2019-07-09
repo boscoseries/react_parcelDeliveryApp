@@ -1,32 +1,41 @@
 import axios from "axios";
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Redirect } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import validate from "../hooks/validate";
 
 const Signup = () => {
   const { handleChange, handleSubmit, errors } = useForm(submit, validate);
+  const [signedUp, setSignedUp] = useState<any>({ valid: false, invalid: false })
+
 
   function submit(data: any) {
     console.log("signup form submitted");
     axios
       .get(`http://localhost:3000/users/?email=${data.email}`)
         .then((response: any) => {
-        if (response.data.length) {
-          console.log('user already exists')
-        } else {
-          axios.post("http://localhost:3000/users", data)
-            .then((res: any) => {
-            console.log(res.data);
-          });
-        }
+          if (response.data.length) {
+            setSignedUp({ invalid: true })
+            console.log('user already exists')
+            return;
+          } else {
+            axios.post("http://localhost:3000/users", data)
+              .then((res: any) => {
+                setSignedUp({ valid: true })
+                console.log(res.data);
+              });
+            console.log('user created')
+            return
+          }
       })
       .catch(err => {
         console.log("error message", err);
       });
   }
 
-  return (
+  return signedUp.valid ? (
+    <Redirect to="/login" />
+  ) : (
     <div className="top-margin">
       <div className="form-wrapper" style={{ width: "30%", padding: "50px" }}>
         <h4 style={{ textAlign: "center", color: "black", padding: 0, margin: 0 }}>User signup</h4>
@@ -51,7 +60,7 @@ const Signup = () => {
               id="email"
               placeholder="johndoe@example.com"
               onChange={handleChange}
-              className={`${errors.email ? "inputError" : "inputValid"}`}
+              className={`${errors.email || signedUp.invalid ? "inputError" : "inputValid"}`}
             />
             {errors.email && <p className="error">{errors.email}</p>}
           </div>
@@ -91,6 +100,7 @@ const Signup = () => {
           </div>
           <br />
           {errors.inputRequired && <p className="error">{errors.inputRequired}</p>}
+          {signedUp.invalid && <p className="error">Email already exists, Please provide a unique email address</p>}
           <div>
             <input type="submit" id="submit" value="Submit" />
           </div>

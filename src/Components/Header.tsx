@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../images/logo.svg";
 
 export default function Header() {
-  const isLoggedIn = false;
+  const isLoggedIn = { valid: false, invalid: true };
 
   return (
     <header className="header fixed-top">
@@ -13,14 +13,21 @@ export default function Header() {
       </div>
       <nav className="header-content">
         <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/signup">Get Started</NavLink>
-          </li>
-          {isLoggedIn && (
+          {isLoggedIn.invalid && (
             <>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/signup">Get Started</NavLink>
+              </li>
+            </>
+          )}
+          {isLoggedIn.valid && (
+            <>
+              <li>
+                <NavLink to="/login">Log Out</NavLink>
+              </li>
               <li>
                 <NavLink to="/create">Send a Parcel</NavLink>
               </li>

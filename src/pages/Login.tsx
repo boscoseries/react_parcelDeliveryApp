@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink,Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import validate from "../hooks/validate";
 import jwt from "jsonwebtoken";
@@ -8,8 +8,7 @@ import axios from "axios";
 
 export default function Login() {
   const { handleChange, handleSubmit, errors } = useForm(submit, validate);
-  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false)
-
+  const [isLoggedIn, setIsLoggedIn] = useState<any>({ valid: false, invalid: false })
   function submit(data: any) {
     console.log("login form submitted");
     axios
@@ -19,12 +18,13 @@ export default function Login() {
           jwt.sign({ data: response.data }, "mysecret", { expiresIn: "1h" }, (error, token) => {
             if (token) {
               localStorage.setItem("token", token);
-              setIsLoggedIn(true)
+              setIsLoggedIn({ valid: true })
               console.log(token);
             }
             return;
           })
         } else {
+          setIsLoggedIn({ invalid: true })
           console.log('not found')
         }
       })
@@ -33,7 +33,7 @@ export default function Login() {
       });
   }
 
-  return isLoggedIn ? (
+  return isLoggedIn.valid ? (
     <Redirect to="/create" />
   ) : (
     <div className="top-margin">
@@ -48,7 +48,7 @@ export default function Login() {
               id="email"
               placeholder="johndoe@example.com"
               onChange={handleChange}
-              className={`${errors.email ? "inputError" : "inputValid"}`}
+              className={`${errors.email || isLoggedIn.invalid ? "inputError" : "inputValid"}`}
             />
             {errors.email && <p className="error">{errors.email}</p>}
           </div>
@@ -59,12 +59,13 @@ export default function Login() {
               name="password"
               id="password"
               onChange={handleChange}
-              className={`${errors.password ? "inputError" : "inputValid"}`}
+              className={`${errors.password || isLoggedIn.invalid ? "inputError" : "inputValid"}`}
             />
             {errors.password && <p className="error">{errors.password}</p>}
           </div>
           <br />
           {errors.inputRequired && <p className="error">{errors.inputRequired}</p>}
+          {isLoggedIn.invalid && <p className="error">Username or password is Invalid</p>}
           <div>
             <input type="submit" value="Submit" />
           </div>

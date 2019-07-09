@@ -36,7 +36,7 @@ export default function useForm(submitCallback: any, validateCallback: any) {
       // call submit function if above conditions are met
       submitCallback(inputValues);
     }
-  }, [errors, submitted, inputValues]);
+  }, [ errors, submitted ]);
 
   return {
     handleChange,

@@ -11,7 +11,7 @@ export default function validate(values: any) {
   if (values.email && !/\w+@\w+\.\w+.+/.test(values.email)) {
     errors.email = "Please enter a valid email address";
   }
-  if (values.phone && !/\d{11}/.test(values.phone)) {
+  if (values.phone && !/0\d{10}/.test(values.phone)) {
     errors.phone = "Password enter a valid 11 digits phone number";
   }
   if (values.password && !/\D*\d+\w*/.test(values.password)) {
