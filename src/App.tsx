@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { logger } from './context'
 
 import "./styles/App.css";
 
@@ -12,17 +13,20 @@ import CreateOrder from "./pages/CreateOrder";
 
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState<object>({ valid: false, invalid: false })
   return (
-    <Router>
-      <div>
-        <Header />
-        <Route path="/" exact component={Homepage} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/create" exact component={CreateOrder} />
-        <Footer />
-        </div>
-    </Router>
+    <logger.Provider value={{isLoggedIn, setIsLoggedIn}}>
+      <Router>
+        <div>
+          <Header />
+          <Route path="/" exact component={Homepage} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/create" exact component={CreateOrder} />
+          <Footer />
+          </div>
+        </Router>
+    </logger.Provider>
   );
 }
 

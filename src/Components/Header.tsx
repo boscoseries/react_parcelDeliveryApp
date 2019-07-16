@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.svg";
 
+import { logger } from "../context";
+
+
 export default function Header() {
-  const isLoggedIn = { valid: false, invalid: true };
+  const { isLoggedIn, setIsLoggedIn } = useContext(logger);
 
   return (
     <header className="header fixed-top">
@@ -13,29 +16,31 @@ export default function Header() {
       </div>
       <nav className="header-content">
         <ul>
-          {isLoggedIn.invalid && (
-            <>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/signup">Get Started</NavLink>
-              </li>
-            </>
-          )}
-          {isLoggedIn.valid && (
-            <>
-              <li>
-                <NavLink to="/login">Log Out</NavLink>
-              </li>
-              <li>
-                <NavLink to="/create">Send a Parcel</NavLink>
-              </li>
-              <li>
-                <NavLink to="">Track my Parcel</NavLink>
-              </li>
-            </>
-          )}
+          {!isLoggedIn.invalid &&
+            ((
+              <>
+                <li>
+                  <NavLink to="/">Home</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/signup">Get Started</NavLink>
+                </li>
+              </>
+            ))}
+          {isLoggedIn.valid &&
+            ( (
+              <>
+                <li>
+                  <NavLink to="/create">Send a Parcel</NavLink>
+                </li>
+                <li>
+                  <NavLink to="">Track my Parcel</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/login">Log Out</NavLink>
+                </li>
+              </>
+            ))}
         </ul>
       </nav>
     </header>

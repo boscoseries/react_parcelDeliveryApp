@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import validate from "../hooks/validate";
 import jwt from "jsonwebtoken";
 
+import { logger } from '../context'
 import axios from "axios";
 
 export default function Login() {
   const { handleChange, handleSubmit, errors } = useForm(submit, validate);
-  const [isLoggedIn, setIsLoggedIn] = useState<any>({ valid: false, invalid: false })
+  const { isLoggedIn, setIsLoggedIn } = useContext(logger)
+
   function submit(data: any) {
     console.log("login form submitted");
     axios
@@ -17,21 +19,23 @@ export default function Login() {
         if (response.data.length) {
           jwt.sign({ data: response.data }, "mysecret", { expiresIn: "1h" }, (error, token) => {
             if (token) {
+              setIsLoggedIn({ valid: true, invalid: false })
               localStorage.setItem("token", token);
-              setIsLoggedIn({ valid: true })
+              localStorage.setItem("loggedIn", "true");
               console.log(token);
             }
             return;
           })
         } else {
-          setIsLoggedIn({ invalid: true })
+          setIsLoggedIn({ valid: false, invalid: true })
+          localStorage.setItem("notLoggedIn", "true");
           console.log('not found')
         }
       })
       .catch(err => {
         console.log("error message", err);
       });
-  }
+    }
 
   return isLoggedIn.valid ? (
     <Redirect to="/create" />
