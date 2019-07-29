@@ -7,7 +7,7 @@ import "./styles/App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Homepage from "./pages/Homepage";
-import Signup from "./pages/Signup";
+import Signup from "./pages/Signup/";
 import Login from "./pages/Login";
 import CreateOrder from "./pages/CreateOrder";
 
