@@ -1,0 +1,39 @@
+@media (min-width: 992px) {
+.navbar-expand-lg .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+    justify-content: flex-end;
+  }
+}
+
+.bg-color {
+  background-color: rgb(89, 88, 160);
+}
+
+.logo-text {
+  color: #e2f2ff
+}
+
+.header-link {
+  /* background-color: #e7e7e7;
+  border: 1px solid; */
+  border-radius: 3px;
+  text-decoration: none;
+  font: 700 14px Helvetica, Arial;
+  text-align: center;
+  margin-right: 20px;
+  padding: 10px 15px;
+  color: #fff;
+}
+
+.header-link:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: rgb(20, 19, 82);
+}
+
+/* .header-link:active {
+  color: #000;
+  text-decoration: none;
+  background-color: #dadada
+} */
