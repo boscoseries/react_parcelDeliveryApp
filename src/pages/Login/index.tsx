@@ -4,7 +4,7 @@ import useForm from "../../hooks/useForm";
 import validate from "../../hooks/validate";
 import jwt from "jsonwebtoken";
 
-import './styles.css'
+import "./styles.css";
 import { logger } from "../../context";
 import axios from "axios";
 import Input from "../../Components/Input";
@@ -57,6 +57,7 @@ export default function Login() {
               htmlFor="email"
               label="Email"
               type="email"
+              name="email"
               id="email"
               placeholder="johndoe@example.com"
               ariaLabel="Email"
@@ -70,15 +71,14 @@ export default function Login() {
               htmlFor="password"
               label="Password"
               type="password"
+              name="password"
               id="password"
               placeholder="Enter password"
               onChange={handleChange}
-              className={`${errors.email || isLoggedIn.invalid ? "inputError" : null} form-control`}
+              className={`${errors.password || isLoggedIn.invalid ? "inputError" : null} form-control`}
             />
             {errors.password && <p className="error">{errors.password}</p>}
-            <div>{errors.password && <p className="error">{errors.password}</p>}</div>
             <br />
-            {errors.inputRequired && <p className="error">{errors.inputRequired}</p>}
             {isLoggedIn.invalid && <p className="error">Username or password is Invalid</p>}
             <Input type="submit" value="Submit" id="submit" className="btn-primary" />
           </div>

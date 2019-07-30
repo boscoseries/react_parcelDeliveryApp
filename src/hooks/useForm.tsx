@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
 
-/**
- *  type InputEvent = React.ChangeEvent<HTMLInputElement>;
- *  type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
- */
-
-
 export default function useForm(submitCallback: any, validateCallback: any) {
   // set state for form inputs
-  const [inputValues, setInputValues] = useState<any>({});
+  let [inputValues, setInputValues] = useState<any>({});
   // set state for errors
   const [errors, setErrors] = useState<any>({});
   // set state for form submission
@@ -17,6 +11,7 @@ export default function useForm(submitCallback: any, validateCallback: any) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newName = e.target.value;
     const key = e.target.name;
+
     return setInputValues({
       ...inputValues,
       [key]: newName
@@ -33,10 +28,12 @@ export default function useForm(submitCallback: any, validateCallback: any) {
 
   useEffect(() => {
     if (!Object.keys(errors).length && submitted) {
+      // validate on every inputValue change
+      validateCallback(inputValues);
       // call submit function if above conditions are met
       submitCallback(inputValues);
     }
-  }, [ errors, submitted ]);
+  }, [errors, submitted, inputValues, submitCallback, validateCallback]);
 
   return {
     handleChange,
