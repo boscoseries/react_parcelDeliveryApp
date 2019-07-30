@@ -8,32 +8,46 @@ export default function useForm(submitCallback: any, validateCallback: any) {
   // set state for form submission
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newName = e.target.value;
-    const key = e.target.name;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    const targetValue = e.target.value;
+    const name = e.target.name;
 
     return setInputValues({
       ...inputValues,
-      [key]: newName
+      [name]: targetValue
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<EventTarget>): void => {
+  const handleSubmit = (e: React.FormEvent<EventTarget>): any => {
     e.preventDefault();
+    e.persist()
+    console.log(e.target)
+    // re-set submitted status to false
+    setSubmitted(true);
+
     // create errors object at this point and export to form
     setErrors(validateCallback(inputValues));
-    // re-set submitted to true
-    setSubmitted(true);
+
+    const inputKeys = Object.keys(inputValues);
+    const errorObject = Object.keys(errors);
+
+    inputKeys.forEach(input => {
+      if (errorObject.includes(input)) {
+        // re-set submitted to false
+       return () => setSubmitted(false);
+      }
+    })
   };
 
   useEffect(() => {
-    if (!Object.keys(errors).length && submitted) {
-      // validate on every inputValue change
-      validateCallback(inputValues);
-      // call submit function if above conditions are met
+
+    console.log(`submittedStatus is ${submitted}`);
+    if (submitted && Object.keys(errors).length <= 3 && Object.keys(inputValues).length >= 2 && !Object.values(inputValues).includes("")) {
       submitCallback(inputValues);
+      return;
     }
-  }, [errors, submitted, inputValues, submitCallback, validateCallback]);
+    console.error("form not submitted");
+  }, [submitted, errors, validateCallback]);
 
   return {
     handleChange,
