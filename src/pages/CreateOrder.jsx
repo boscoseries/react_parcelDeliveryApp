@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { Input, InputRadio, Label } from "../Components/Input";
 
 import "../styles/orderStyles.css";
@@ -8,10 +7,42 @@ export default function CreateOrder() {
   const [radioState, setRadioState] = useState(false);
   const [value, setValue] = useState(1);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event) => {
+    event.preventDefault();
     setRadioState(true);
     console.log(radioState);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
+
+  function valid () {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName("needs-validation");
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          // form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  }
+
+  useEffect(() => {
+    valid();
+    // (function () {
+    //   "use strict";
+    //   window.addEventListener("load", valid , false) })();
+  });
 
   return (
     <div className="form-wrapper top-margin" style={{ width: "100%" }}>
@@ -51,7 +82,7 @@ export default function CreateOrder() {
           <div className="col-md-8 order-md-1">
             <h4 className="mb-3">Pickup Information</h4>
 
-            <form className="needs-validation">
+            <form className="needs-validation" onSubmit={handleSubmit}>
               <p>Select a pickup location:</p>
 
               <div className="d-block my-3">
@@ -76,7 +107,8 @@ export default function CreateOrder() {
                   <div className="row">
                     <div className="col-md-6 mb-3">
                       <label htmlFor="address">Address</label>
-                      <Input type="text" className="form-control" id="address" placeholder="Pickup address" />
+                      <Input type="text" className="form-control is-valid" id="address" placeholder="Pickup address" />
+                      <div class="valid-feedback">Looks good!</div>
                     </div>
                     <div className="col-md-6 mb-3">
                       <label htmlFor="milestone">Milestone</label>
@@ -225,9 +257,7 @@ export default function CreateOrder() {
       </div>
     </div>
   );
-};
-
-
+}
 
 // <h4 className="mb-3">Payment</h4>
 //   <div className="d-block my-3">

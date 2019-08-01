@@ -1,5 +1,5 @@
-export default function validate(values: any) {
-  const errors: any = {};
+export default function validate(values) {
+  const errors = {};
   const password = new RegExp(values.password)
 
   if (!values.fullname || !/\w+\s+\w+.+/.test(values.fullname)) {

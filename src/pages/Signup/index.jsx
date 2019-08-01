@@ -10,19 +10,19 @@ import Card from "../../Components/Card";
 
 const Signup = () => {
   const { handleChange, handleSubmit, errors } = useForm(submit, validate);
-  const [signedUp, setSignedUp] = useState<any>({ valid: false, invalid: false });
+  const [signedUp, setSignedUp] = useState({ valid: false, invalid: false });
 
-  function submit(data: any) {
+  function submit(data) {
     console.log("signup form submitted");
     axios
       .get(`http://localhost:3000/users/?email=${data.email}`)
-      .then((response: any) => {
+      .then((response) => {
         if (response.data.length) {
           setSignedUp({ invalid: true });
           console.log("user already exists");
           return;
         } else {
-          axios.post("http://localhost:3000/users", data).then((res: any) => {
+          axios.post("http://localhost:3000/users", data).then((res) => {
             setSignedUp({ valid: true });
             console.log(res.data);
           });

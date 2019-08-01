@@ -7,13 +7,14 @@ import "./styles/App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Homepage from "./pages/Homepage";
-import Signup from "./pages/Signup/";
+import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+// import Stripe from "./Components/Stripe";
 import CreateOrder from "./pages/CreateOrder";
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<object>({ valid: false, invalid: false })
+  const [isLoggedIn, setIsLoggedIn] = useState({ valid: false, invalid: false })
   return (
     <logger.Provider value={{isLoggedIn, setIsLoggedIn}}>
       <Router>

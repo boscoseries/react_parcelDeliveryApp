@@ -14,11 +14,11 @@ export default function Login() {
   const { handleChange, handleSubmit, errors } = useForm(submit, validate);
   const { isLoggedIn, setIsLoggedIn } = useContext(logger);
 
-  function submit(data: any) {
+  function submit(data) {
     console.log("login form submitted");
     axios
       .get(`http://localhost:3000/users/?email=${data.email}`)
-      .then((response: any) => {
+      .then((response) => {
         if (response.data.length) {
           jwt.sign({ data: response.data }, "mysecret", { expiresIn: "1h" }, (error, token) => {
             if (token) {

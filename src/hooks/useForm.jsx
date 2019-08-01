@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
-export default function useForm(submitCallback: any, validateCallback: any) {
+export default function useForm(submitCallback, validateCallback) {
   // set state for form inputs
-  let [inputValues, setInputValues] = useState<any>({});
+  let [inputValues, setInputValues] = useState({});
   // set state for errors
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState({});
   // set state for form submission
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): any => {
+  const handleChange = (e) => {
     const targetValue = e.target.value;
     const name = e.target.name;
 
@@ -18,7 +18,7 @@ export default function useForm(submitCallback: any, validateCallback: any) {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<EventTarget>): any => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     e.persist()
     console.log(e.target)

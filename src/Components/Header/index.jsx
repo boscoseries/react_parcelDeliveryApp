@@ -34,7 +34,7 @@ export default function Header() {
               <Button className="header-link  nav-link" title={"Get Started"} to={"/signup"} />
             </>
           )}
-          {isLoggedIn.valid && (
+          {!isLoggedIn.valid && (
             <>
               <Button className="header-link nav-link" title={"Send a Parcel"} to={"/create"} />
               <Button className="header-link nav-link" title={"Track my Parcel"} to={""} />

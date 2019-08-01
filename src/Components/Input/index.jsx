@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-export function Input({ type, id, name, value, placeholder, ariaLabel, onChange, className, icon }: any) {
+export function Input({ type, id, name, value, placeholder, ariaLabel, onChange, className, icon } ) {
   return (
     <>
       <div className="input-group flex-nowrap">
@@ -28,7 +28,7 @@ export function Input({ type, id, name, value, placeholder, ariaLabel, onChange,
   );
 }
 
-export function Label({ htmlFor, id, content, className }: any) {
+export function Label({ htmlFor, id, content, className }) {
   return (
     <label htmlFor={htmlFor} className={className} id={id}>
       {content}
@@ -36,10 +36,10 @@ export function Label({ htmlFor, id, content, className }: any) {
   );
 }
 
-export function InputRadio({ id, name, value, type, onChange, className, checked }: any) {
+export function InputRadio({ id, name, value, type, onChange, className, checked, required }) {
   return (
     <>
-      <input type={type} id={id} name={name} value={value} className={className} onChange={onChange} checked={checked} />
+      <input type={type} id={id} name={name} value={value} className={className} onChange={onChange} checked={checked} required={true} />
     </>
   );
 }

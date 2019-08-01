@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-export default function Card({ header, footer, body }: any) {
+export default function Card({ header, footer, body }) {
   return (
     <div className="top-margin">
       <div className="col-sm-4">
