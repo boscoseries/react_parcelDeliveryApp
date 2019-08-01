@@ -5,7 +5,7 @@ import useForm from "../../hooks/useForm";
 import validate from "../../hooks/validate";
 
 import './styles.css'
-import Input from "../../Components/Input";
+import { Input, Label } from "../../Components/Input";
 import Card from "../../Components/Card";
 
 const Signup = () => {
@@ -48,9 +48,8 @@ const Signup = () => {
       body={
         <form className="form" noValidate onSubmit={handleSubmit}>
           <div className="form-group">
+            <Label htmlFor="firstname" content="Fullname" />
             <Input
-              htmlFor="firstname"
-              label="Fullname"
               type="text"
               name="fullname"
               id="fullname"
@@ -59,12 +58,17 @@ const Signup = () => {
               onChange={handleChange}
               className={`${errors.fullname ? "inputError" : null} form-control`}
             />
-            {errors.fullname && <p className="error">{errors.fullname}</p>}
+            {errors.fullname ? (
+              <p className="error">{errors.fullname}</p>
+            ) : (
+              <small id="passwordHelpBlock" className="form-text text-muted">
+                First and Lastnames are required.
+              </small>
+            )}
           </div>
           <div className="form-group">
+            <Label htmlFor="email" content="Email Adress" />
             <Input
-              htmlFor="email"
-              label="Email Adress"
               type="email"
               name="email"
               id="email"
@@ -76,9 +80,8 @@ const Signup = () => {
             {errors.email && <p className="error">{errors.email}</p>}
           </div>
           <div className="form-group">
+            <Label htmlFor="phone" content="Phone" />
             <Input
-              htmlFor="phone"
-              label="Phone"
               type="number"
               name="phone"
               id="phone"
@@ -90,9 +93,8 @@ const Signup = () => {
             {errors.phone && <p className="error">{errors.phone}</p>}
           </div>
           <div className="form-group">
+            <Label htmlFor="password" content="Password" />
             <Input
-              htmlFor="password"
-              label="Password"
               type="password"
               name="password"
               id="password"
@@ -101,9 +103,13 @@ const Signup = () => {
               onChange={handleChange}
               className={`${errors.password ? "inputError" : null} form-control`}
             />
-            {errors.password && <p className="error">{errors.password}</p>}
+            {errors.password ? <p className="error">{errors.password}</p> :
+            <small id="passwordHelpBlock" className="form-text text-muted">
+              Password should be a minimun of 4 characters and must contain a number.
+            </small>}
           </div>
           <div className="form-group">
+            <Label htmlFor="passwordRepeat" content="Confirm Password" />
             <Input
               htmlFor="password2"
               label="Confirm Password"

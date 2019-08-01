@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 import "./styles.css";
 import { logger } from "../../context";
 import axios from "axios";
-import Input from "../../Components/Input";
+import { Input, Label } from "../../Components/Input";
 import Card from "../../Components/Card";
 
 export default function Login() {
@@ -52,10 +52,9 @@ export default function Login() {
       }
       body={
         <form className="form" onSubmit={handleSubmit} noValidate>
+          <Label htmlFor="email" content="Email" />
           <div className="form-group">
             <Input
-              htmlFor="email"
-              label="Email"
               type="email"
               name="email"
               id="email"
@@ -64,8 +63,9 @@ export default function Login() {
               onChange={handleChange}
               className={`${errors.email || isLoggedIn.invalid ? "inputError" : null} form-control`}
             />
-            {errors.email && <p className="error">{errors.email}</p>}
+            {errors.email && <p className="error">Email field is required</p>}
           </div>
+          <Label htmlFor="password" content="Password" />
           <div className="form-group">
             <Input
               htmlFor="password"
@@ -77,7 +77,7 @@ export default function Login() {
               onChange={handleChange}
               className={`${errors.password || isLoggedIn.invalid ? "inputError" : null} form-control`}
             />
-            {errors.password && <p className="error">{errors.password}</p>}
+            {errors.password && <p className="error">Password field is required</p>}
             <br />
             {isLoggedIn.invalid && <p className="error">Username or password is Invalid</p>}
             <Input type="submit" value="Submit" id="submit" className="btn-primary" />
